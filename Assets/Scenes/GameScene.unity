@@ -1305,6 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f20432965607240b70a1f81cbd40f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerModel: {fileID: 1099814542}
 --- !u!114 &1099814541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,6 +1330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd1e4254cde48943bedd1c1a22d9dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curState: 0
   maxHP: 5
   curHP: 0
   moveSpeed: 5

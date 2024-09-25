@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class PlayerModel : MonoBehaviour
 {
+    public enum PlayerState { Idle, Move, Jump, Die, Size }
+    [SerializeField] PlayerState curState = PlayerState.Idle;
+
     [SerializeField] int maxHP;
     public int MaxHP { get { return maxHP; } set { maxHP = value; } }
 
