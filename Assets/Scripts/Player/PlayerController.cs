@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum PlayerState { Idle, Move, Jump, Die, Size }
+    [SerializeField] PlayerState curState = PlayerState.Idle;
+    public BaseState[] states = new BaseState[(int)PlayerState.Size];
+
     [Header("Model")]
     [SerializeField] PlayerModel playerModel;
 
@@ -15,7 +19,20 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        
+        states[(int)PlayerState.Idle] = idleState;
+        states[(int)PlayerState.Move] = moveState;
+        states[(int)PlayerState.Jump] = jumpState;
+        states[(int)PlayerState.Die] = dieState;
+    }
+
+    private void Start()
+    {
+        states[(int)curState].Enter();
+    }
+
+    private void OnDestroy()
+    {
+        states[(int)curState].Exit();
     }
 
     private void Update()
