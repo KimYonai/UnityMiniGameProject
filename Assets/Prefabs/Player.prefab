@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!58 &477809995688809783
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -120,9 +120,9 @@ MonoBehaviour:
   maxHP: 5
   curHP: 0
   moveSpeed: 5
-  maxMoveSpeed: 0
-  jumpPower: 5
-  maxFallSpeed: 0
+  maxMoveSpeed: 5
+  jumpPower: 12
+  maxFallSpeed: 10
 --- !u!114 &477809995688809781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curState: 0
   player: {fileID: 477809995688809779}
-  rigid: {fileID: 0}
-  render: {fileID: 0}
+  rigid: {fileID: 8801559164605252508}
+  render: {fileID: 477809995688809768}
   isMove: 0
   isGrounded: 0
   playerModel: {fileID: 477809995688809782}
@@ -169,7 +169,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

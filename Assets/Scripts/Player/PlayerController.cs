@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         float x = Input.GetAxis("Horizontal");
-        Vector2 run = new Vector2(x, 0) * playerModel.MoveSpeed;
+        Vector2 run = new Vector2(x * playerModel.MoveSpeed, rigid.velocity.y);
         rigid.velocity = run;
 
         if (x < 0)
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
             render.flipX = false;
         }
 
-        if (rigid.velocity.x > 0.01f)
+        if (rigid.velocity.x > 0.01f || rigid.velocity.x < -0.01f)
         {
             isMove = true;
         }
@@ -89,14 +89,9 @@ public class PlayerController : MonoBehaviour
         {
             rigid.velocity = new Vector2(-playerModel.MaxMoveSpeed, rigid.velocity.y);
         }
-
-        if (rigid.velocity.y < -playerModel.MaxFallSpeed)
-        {
-            rigid.velocity = new Vector2(rigid.velocity.x, -playerModel.MaxFallSpeed);
-        }
     }
 
-    public void Jump()
+    private void Jump()
     {
         if (isGrounded == false)
             return;
