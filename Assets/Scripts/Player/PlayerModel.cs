@@ -7,10 +7,6 @@ public class PlayerModel : MonoBehaviour
 {
     [SerializeField] GameObject player;
 
-    public enum PlayerState { Idle, Move, Jump, Die, Size }
-    [SerializeField] public PlayerState curState = PlayerState.Idle;
-    public BaseState[] states = new BaseState[(int)PlayerState.Size];
-
     [SerializeField] int maxHP;
     public int MaxHP { get { return maxHP; } set { maxHP = value; } }
 
