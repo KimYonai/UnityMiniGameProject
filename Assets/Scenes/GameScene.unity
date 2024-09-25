@@ -1272,17 +1272,16 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1099814542 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+--- !u!212 &1099814544 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 477809995688809768, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
   m_PrefabInstance: {fileID: 477809994606330808}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fd1e4254cde48943bedd1c1a22d9dd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+--- !u!50 &1099814546 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8801559164605252508, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+  m_PrefabInstance: {fileID: 477809994606330808}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1296069525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 477809995688809768, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 477809995688809769, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1386,8 +1389,20 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
-      propertyPath: playerModel
+      propertyPath: rigid
       value: 
-      objectReference: {fileID: 1099814542}
+      objectReference: {fileID: 1099814546}
+    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: render
+      value: 
+      objectReference: {fileID: 1099814544}
+    - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: maxFallSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: maxMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}

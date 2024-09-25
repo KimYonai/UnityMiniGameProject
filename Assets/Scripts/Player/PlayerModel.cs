@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 public class PlayerModel : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-
     [SerializeField] int maxHP;
     public int MaxHP { get { return maxHP; } set { maxHP = value; } }
 
@@ -17,6 +15,12 @@ public class PlayerModel : MonoBehaviour
     [SerializeField] float moveSpeed;
     public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
 
+    [SerializeField] float maxMoveSpeed;
+    public float MaxMoveSpeed { get { return maxMoveSpeed; } }
+
     [SerializeField] float jumpPower;
     public float JumpPower { get { return jumpPower; } set { jumpPower = value; } }
+
+    [SerializeField] float maxFallSpeed;
+    public float MaxFallSpeed { get { return maxFallSpeed; } }
 }
