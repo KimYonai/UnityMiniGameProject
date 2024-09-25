@@ -5,8 +5,11 @@ using UnityEngine.Events;
 
 public class PlayerModel : MonoBehaviour
 {
+    [SerializeField] GameObject player;
+
     public enum PlayerState { Idle, Move, Jump, Die, Size }
-    [SerializeField] PlayerState curState = PlayerState.Idle;
+    [SerializeField] public PlayerState curState = PlayerState.Idle;
+    public BaseState[] states = new BaseState[(int)PlayerState.Size];
 
     [SerializeField] int maxHP;
     public int MaxHP { get { return maxHP; } set { maxHP = value; } }
