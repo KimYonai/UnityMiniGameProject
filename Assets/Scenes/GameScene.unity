@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 510308485}
   - component: {fileID: 510308484}
   - component: {fileID: 510308483}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,6 +1272,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1099814547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+  m_PrefabInstance: {fileID: 477809994606330808}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f20432965607240b70a1f81cbd40f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1296069525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,17 +1385,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 477809995688809779, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: idleState.player
+      value: 
+      objectReference: {fileID: 1099814547}
     - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: jumpPower
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: moveSpeed
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: maxFallSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: maxMoveSpeed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801559164605252508, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: m_GravityScale
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
