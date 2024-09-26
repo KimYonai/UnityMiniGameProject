@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8101385577835494130}
   - component: {fileID: 8631994139174955639}
   - component: {fileID: 8002409293792558883}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy_Bee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -24864813
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -7659945631384244969, guid: 8ae7bbab9d0152c458df7b25675cfebb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100,11 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bce04aa06a9b804f9ee9efe4f1ce8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
-  curHP: 0
-  moveSpeed: 0
+  maxHP: 5
+  curHP: 5
+  moveSpeed: 5
+  returnSpeed: 3
   traceRange: 0
-  attackRange: 0
+  attackRange: 5
   attackPoint: 0
 --- !u!114 &8101385577835494130
 MonoBehaviour:
@@ -131,11 +132,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curState: 0
-  enemy: {fileID: 0}
+  player: {fileID: 0}
+  bullet: {fileID: 5187412739852176016, guid: 782b1ca7ff8355e4e9c7ac6bad2f1d2a, type: 3}
   rigid: {fileID: 0}
-  render: {fileID: 0}
+  render: {fileID: 5145528623463566955}
+  startPos: {x: 0, y: 0}
   isTrace: 0
-  enemyModel: {fileID: 0}
+  idleState:
+    enemy: {fileID: 8631994139174955639}
+  traceState:
+    enemy: {fileID: 8631994139174955639}
+  returnState:
+    enemy: {fileID: 8631994139174955639}
+  attackState:
+    enemy: {fileID: 8631994139174955639}
+  dieState:
+    enemy: {fileID: 8631994139174955639}
+  enemyModel: {fileID: 6779971786269169295}
 --- !u!60 &8002409293792558883
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +159,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

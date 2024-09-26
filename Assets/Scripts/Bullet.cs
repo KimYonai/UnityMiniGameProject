@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Transform playerPos;
+    [SerializeField] Vector2 direction;
+    [SerializeField] float speed;
+
+    private void Start()
     {
-        
+        playerPos = GameObject.Find("Player").GetComponent<Transform>();
+        direction = playerPos.position - transform.position;
+        GetComponent<Rigidbody2D>().AddForce(direction * Time.deltaTime * 100000);
+
+        Destroy(gameObject, 3.0f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.tag == "Player")
+        {
+            PlayerController player = GetComponent<PlayerController>();
+            player.TakeHit();
+            Destroy(gameObject);
+        }
+        else if (collision != null)
+        {
+            Destroy(gameObject);
+        }
     }
 }

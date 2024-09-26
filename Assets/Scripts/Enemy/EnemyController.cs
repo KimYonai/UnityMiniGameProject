@@ -12,10 +12,12 @@ public class EnemyController : MonoBehaviour
 
     [Header("Enemy Settings")]
     [SerializeField] GameObject player;
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bulletObj;
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer render;
     [SerializeField] Vector2 startPos;
+    [SerializeField] float fireTime;
+    [SerializeField] float remainTime;
     [SerializeField] bool isTrace;
 
     [Header("State Settings")]
@@ -41,6 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
+        remainTime = fireTime;
         states[(int)curState].Enter();
     }
 
@@ -52,8 +55,17 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         states[(int)curState].Update();
+
+        remainTime -= Time.deltaTime;
+        
+        if (curState == EnemyState.Attack && remainTime <= 0)
+        {
+            Instantiate(bulletObj, transform.position, transform.rotation);
+            remainTime = fireTime;
+        }
     }
 
+    
     public void ChangeState(EnemyState nextState)
     {
         states[(int)curState].Exit();
@@ -90,11 +102,6 @@ public class EnemyController : MonoBehaviour
 
         public override void Update()
         {
-            if (enemy.enemyModel.TraceRange <= 0)
-            {
-                enemy.ChangeState(EnemyState.Attack);
-            }
-
             enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, enemy.player.transform.position, enemy.enemyModel.MoveSpeed * Time.deltaTime);
 
             if (Vector2.Distance(enemy.transform.position, enemy.player.transform.position) > enemy.enemyModel.TraceRange)
@@ -135,12 +142,10 @@ public class EnemyController : MonoBehaviour
 
         public override void Update()
         {
-            if (enemy.enemyModel.AttackRange <= 0)
+            if (Vector2.Distance(enemy.transform.position, enemy.startPos) < enemy.enemyModel.AttackRange)
             {
-                enemy.ChangeState(EnemyState.Trace);
+                enemy.ChangeState(EnemyState.Idle);
             }
-
-            GameObject enemyBullet = Instantiate(enemy.bullet, enemy.transform.position, enemy.transform.rotation);
         }
     }
 

@@ -127,6 +127,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void TakeHit()
+    {
+        playerModel.CurHP--;
+    }
+
     private void AnimationPlay()
     {
         int checkAniHash;
