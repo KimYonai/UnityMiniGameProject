@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum PlayerState { Idle, Run, Jump, Die, Size }
+    public enum PlayerState { Idle, Run, Jump, Die }
     [Header("Current State")]
     [SerializeField] PlayerState curState;
 
@@ -14,6 +14,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer render;
     [SerializeField] bool isMove;
     [SerializeField] bool isGrounded;
+
+    [Header("Animation")]
+    [SerializeField] Animator animator;
+    private static int idleHash = Animator.StringToHash("Idle");
+    private static int runHash = Animator.StringToHash("Run");
+    private static int jumpHash = Animator.StringToHash("Jump");
+    private static int fallHash = Animator.StringToHash("Fall");
+    private int curAniHash;
 
     [Header("Model")]
     [SerializeField] PlayerModel playerModel;
@@ -26,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        PlayerMove();
     }
 
     private void Update()
@@ -58,9 +66,11 @@ public class PlayerController : MonoBehaviour
         }
 
         GroundCheck();
+
+        AnimationPlay();
     }
 
-    private void Move()
+    private void PlayerMove()
     {
         float x = Input.GetAxis("Horizontal");
         Vector2 run = new Vector2(x * playerModel.MoveSpeed, rigid.velocity.y);
@@ -114,6 +124,34 @@ public class PlayerController : MonoBehaviour
         else
         {
             isGrounded = false;
+        }
+    }
+
+    private void AnimationPlay()
+    {
+        int checkAniHash;
+
+        if (rigid.velocity.y > 0.01f)
+        {
+            checkAniHash = jumpHash;
+        }
+        else if (rigid.velocity.y < -0.01f)
+        {
+            checkAniHash = fallHash;
+        }
+        else if (rigid.velocity.sqrMagnitude < 0.01f)
+        {
+            checkAniHash = idleHash;
+        }
+        else
+        {
+            checkAniHash = runHash;
+        }
+
+        if (curAniHash != checkAniHash)
+        {
+            curAniHash = checkAniHash;
+            animator.Play(curAniHash);
         }
     }
 
