@@ -1272,16 +1272,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!212 &1099814544 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 477809995688809768, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
-  m_PrefabInstance: {fileID: 477809994606330808}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1099814546 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 8801559164605252508, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
-  m_PrefabInstance: {fileID: 477809994606330808}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1296069525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,10 +1326,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 477809995688809768, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 477809995688809769, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1388,21 +1374,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
-      propertyPath: rigid
-      value: 
-      objectReference: {fileID: 1099814546}
-    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
-      propertyPath: render
-      value: 
-      objectReference: {fileID: 1099814544}
     - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
-      propertyPath: maxFallSpeed
-      value: 10
+      propertyPath: jumpPower
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: moveSpeed
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: maxMoveSpeed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}

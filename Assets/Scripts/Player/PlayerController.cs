@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public enum PlayerState { Idle, Run, Jump, Die, Size }
-    [SerializeField] PlayerState curState = PlayerState.Idle;
-    public BaseState[] states = new BaseState[(int)PlayerState.Size];
+    [Header("Current State")]
+    [SerializeField] PlayerState curState;
 
     [Header("Move Settings")]
     [SerializeField] GameObject player;
@@ -18,28 +18,10 @@ public class PlayerController : MonoBehaviour
     [Header("Model")]
     [SerializeField] PlayerModel playerModel;
 
-    [Header("State")]
-    [SerializeField] IdleState idleState;
-    [SerializeField] RunState runState;
-    [SerializeField] JumpState jumpState;
-    [SerializeField] DieState dieState;
-
-    private void Awake()
-    {
-        states[(int)PlayerState.Idle] = idleState;
-        states[(int)PlayerState.Run] = runState;
-        states[(int)PlayerState.Jump] = jumpState;
-        states[(int)PlayerState.Die] = dieState;
-    }
-
     private void Start()
     {
-        states[(int)curState].Enter();
-    }
-
-    private void OnDestroy()
-    {
-        states[(int)curState].Exit();
+        curState = PlayerState.Idle;
+        playerModel.CurHP = playerModel.MaxHP;
     }
 
     private void FixedUpdate()
@@ -49,9 +31,30 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        #region State Switch
+        switch (curState)
+        {
+            case PlayerState.Idle:
+                Idle();
+                break;
+
+            case PlayerState.Run:
+                Run();
+                break;
+
+            case PlayerState.Jump:
+                Jump();
+                break;
+
+            case PlayerState.Die:
+                Die();
+                break;
+        }
+        #endregion
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Jump();
+            PlayerJump();
         }
 
         GroundCheck();
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Jump()
+    private void PlayerJump()
     {
         if (isGrounded == false)
             return;
@@ -101,7 +104,8 @@ public class PlayerController : MonoBehaviour
 
     private void GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f);
+        Debug.DrawRay(rigid.position, Vector2.down * 1.1f, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 1.1f, LayerMask.GetMask("Ground"));
 
         if (hit.collider != null)
         {
@@ -113,27 +117,59 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    [System.Serializable]
-    private class IdleState : BaseState
+    private void Idle()
     {
-        
+        if (isMove == true)
+        {
+            curState = PlayerState.Run;
+        }
+        else if (isGrounded == false)
+        {
+            curState = PlayerState.Jump;
+        }
+        else if (playerModel.CurHP <= 0)
+        {
+            curState = PlayerState.Die;
+        }
     }
 
-    [System.Serializable]
-    private class RunState : BaseState
+    private void Run()
     {
-
+        if (isMove == false)
+        {
+            curState = PlayerState.Idle;
+        }
+        else if (isGrounded == false)
+        {
+            curState = PlayerState.Jump;
+        }
+        else if (playerModel.CurHP <= 0)
+        {
+            curState = PlayerState.Die;
+        }
     }
 
-    [System.Serializable]
-    private class JumpState : BaseState
+    private void Jump()
     {
-
+        if (isGrounded == true)
+        {
+            if (isMove == false)
+            {
+                curState = PlayerState.Idle;
+            }
+            else if (isMove == true)
+            {
+                curState = PlayerState.Run;
+            }
+        }
+        else if (playerModel.CurHP <= 0)
+        {
+            curState = PlayerState.Die;
+        }
     }
 
-    [System.Serializable]
-    private class DieState : BaseState
+    private void Die()
     {
-
+        Destroy(gameObject);
     }
 }
