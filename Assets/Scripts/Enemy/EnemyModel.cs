@@ -15,6 +15,9 @@ public class EnemyModel : MonoBehaviour
     [SerializeField] float moveSpeed;
     public float MoveSpeed { get { return moveSpeed; } }
 
+    [SerializeField] float returnSpeed;
+    public float ReturnSpeed { get { return returnSpeed; } }
+
     [SerializeField] float traceRange;
     public float TraceRange { get { return traceRange; } }
 

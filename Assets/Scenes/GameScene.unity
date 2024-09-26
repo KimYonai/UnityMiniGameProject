@@ -199,7 +199,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1994430353
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1157,6 +1157,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &690339319 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8631994139174955639, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+  m_PrefabInstance: {fileID: 8085315147127885900}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7548f88a3b6bd438f3810eb7c85f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &690339321 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6779971786269169295, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
@@ -1472,6 +1483,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5145528623463566955, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145528623463566955, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -24864813
+      objectReference: {fileID: 0}
     - target: {fileID: 5474222198433203698, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1516,9 +1535,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6779971786269169295, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: curHP
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779971786269169295, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: maxHP
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779971786269169295, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779971786269169295, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: traceRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779971786269169295, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: returnSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7082569215065993164, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
       propertyPath: m_Name
       value: Enemy_Bee
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002409293792558883, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8631994139174955639, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
       propertyPath: enemy
@@ -1536,5 +1579,25 @@ PrefabInstance:
       propertyPath: enemyModel
       value: 
       objectReference: {fileID: 690339321}
+    - target: {fileID: 8631994139174955639, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: dieState.enemy
+      value: 
+      objectReference: {fileID: 690339319}
+    - target: {fileID: 8631994139174955639, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: idleState.enemy
+      value: 
+      objectReference: {fileID: 690339319}
+    - target: {fileID: 8631994139174955639, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: traceState.enemy
+      value: 
+      objectReference: {fileID: 690339319}
+    - target: {fileID: 8631994139174955639, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: attackState.enemy
+      value: 
+      objectReference: {fileID: 690339319}
+    - target: {fileID: 8631994139174955639, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}
+      propertyPath: returnState.enemy
+      value: 
+      objectReference: {fileID: 690339319}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fafb5dfcc9f4ec4ebd232734c1e6d96, type: 3}

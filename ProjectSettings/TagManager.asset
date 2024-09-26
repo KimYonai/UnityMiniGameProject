@@ -50,6 +50,9 @@ TagManager:
   - name: Player
     uniqueID: 942485671
     locked: 0
+  - name: Enemy
+    uniqueID: 4270102483
+    locked: 0
   - name: FG
     uniqueID: 2300536943
     locked: 0

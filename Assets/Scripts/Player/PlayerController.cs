@@ -209,5 +209,6 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+        // 게임오버 UI 출력과 시작 화면으로 돌아가기 구현
     }
 }
