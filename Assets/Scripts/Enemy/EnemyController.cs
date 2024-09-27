@@ -6,101 +6,115 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
-    public enum EnemyState { Idle, Return, Attack, Die, Size }
+    public enum EnemyState { Idle, Trace, Attack, Die, Size }
     [Header("Current State")]
     [SerializeField] EnemyState curState;
-    private BaseState[] states = new BaseState[(int)EnemyState.Size];
 
     [Header("Enemy Settings")]
     [SerializeField] GameObject player;
     [SerializeField] GameObject target;
     [SerializeField] GameObject bulletObj;
-    [SerializeField] Rigidbody2D rigid;
-    [SerializeField] SpriteRenderer render;
+    [SerializeField] PlayerController playerController;
     [SerializeField] Vector2 startPos;
+    [SerializeField] LayerMask playerLayer;
     [SerializeField] float fireTime;
     [SerializeField] float remainTime;
     [SerializeField] bool isTrace;
 
-    [Header("State Settings")]
-    [SerializeField] IdleState idleState;
-    [SerializeField] AttackState attackState;
-
     [Header("Model")]
     [SerializeField] EnemyModel enemyModel;
-
-    private void Awake()
-    {
-        states[(int)EnemyState.Idle] = idleState;
-        states[(int)EnemyState.Attack] = attackState;
-    }
 
     private void Start()
     {
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
         remainTime = fireTime;
-        states[(int)curState].Enter();
-    }
 
-    private void OnDestroy()
-    {
-        states[(int)curState].Exit();
     }
 
     private void Update()
     {
-        states[(int)curState].Update();
+        if (player == null)
+        {
+            curState = EnemyState.Idle;
+        }
 
+        #region Enemy State
+        switch (curState)
+        {
+            case EnemyState.Idle:
+                Idle();
+                break;
+
+            case EnemyState.Trace:
+                Trace(); 
+                break;
+
+            case EnemyState.Attack:
+                Attack(); 
+                break;
+
+            case EnemyState.Die:
+                Die();
+                break;
+        }
+        #endregion   
+    }
+
+    private void Idle()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 5, playerLayer) == true)
+        {
+            curState = EnemyState.Trace;
+        }
+        else if (enemyModel.AttackRange > 1)
+        {
+            curState = EnemyState.Attack;
+        }
+        else if (enemyModel.CurHP <= 0)
+        {
+            curState = EnemyState.Die;
+        }
+    }
+
+    private void Trace()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemyModel.MoveSpeed * Time.deltaTime);
+
+        if (Vector2.Distance(transform.position, player.transform.position) < 0.01f)
+        {
+            playerController.TakeHit();
+        }
+
+        if (Physics2D.OverlapCircle(transform.position, 5, playerLayer) == false)
+        {
+            curState = EnemyState.Idle;
+        }
+        else if (enemyModel.CurHP <= 0)
+        {
+            curState = EnemyState.Die;
+        }
+    }
+
+    private void Attack()
+    {
         remainTime -= Time.deltaTime;
 
         if (remainTime <= 0)
         {
-            if (curState == EnemyState.Attack)
-            {
-                GameObject bulletGameObject = Instantiate(bulletObj, transform.position, transform.rotation);
+            GameObject bulletGameObject = Instantiate(bulletObj, transform.position, transform.rotation);
 
-                remainTime = fireTime;
-            }
+            remainTime = fireTime;
         }
-    }
 
-    public void ChangeState(EnemyState nextState)
-    {
-        states[(int)curState].Exit();
-        curState = nextState;
-        states[(int)curState].Enter();
-    }
-
-    [System.Serializable]
-    private class IdleState : BaseState
-    {
-        [SerializeField] EnemyController enemy;
-
-        public override void Update()
+        if (enemyModel.CurHP <= 0)
         {
-            if (enemy.target.transform.position != null)
-            {
-                enemy.ChangeState(EnemyState.Attack);
-            }
-            else if (enemy.player == null)
-            {
-                enemy.ChangeState(EnemyState.Idle);
-            }
+            curState = EnemyState.Die;
         }
     }
 
-    [System.Serializable]
-    private class AttackState : BaseState
+    private void Die()
     {
-        [SerializeField] EnemyController enemy;
-
-        public override void Update()
-        {
-            if (enemy.player == null)
-            {
-                enemy.ChangeState(EnemyState.Idle);
-            }
-        }
+        Destroy(gameObject);
     }
 }

@@ -1308,6 +1308,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1099814547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+  m_PrefabInstance: {fileID: 477809994606330808}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272367899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f20432965607240b70a1f81cbd40f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1296069525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,17 +1430,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 963387157917113333, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
+      propertyPath: traceRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 963387157917113333, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
+      propertyPath: attackRange
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1779405616792946824, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1779405616792946824, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.28
+      value: 4.42
       objectReference: {fileID: 0}
     - target: {fileID: 1779405616792946824, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.97
+      value: -1.49
       objectReference: {fileID: 0}
     - target: {fileID: 1779405616792946824, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1471,6 +1490,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 706051723}
+    - target: {fileID: 2630927922389247757, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1099814547}
     - target: {fileID: 3531869684511810230, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_Name
       value: Enemy
