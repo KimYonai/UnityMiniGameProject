@@ -12,14 +12,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        if (enemyRender.flipX == true)
-        {
-            rb.velocity = Vector2.right * speed;
-        }
-        else
-        {
-            rb.velocity = Vector2.left * speed;
-        }
+        rb.velocity = Vector2.left * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -28,6 +21,11 @@ public class Bullet : MonoBehaviour
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             playerController.TakeHit();
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
+            enemyController.TakeHit();
         }
 
         Destroy(gameObject);

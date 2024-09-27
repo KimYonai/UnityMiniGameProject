@@ -61,6 +61,11 @@ public class EnemyController : MonoBehaviour
         #endregion   
     }
 
+    public void TakeHit()
+    {
+        enemyModel.CurHP--;
+    }
+
     private void Idle()
     {
         if (Physics2D.OverlapCircle(transform.position, 5, playerLayer) == true)

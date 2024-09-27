@@ -199,7 +199,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1994430353
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1181,7 +1181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706051723}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.19, y: -2.42, z: -0.063528255}
+  m_LocalPosition: {x: 6.73, y: -2.42, z: -0.063528255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1379,11 +1379,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477809995688809769, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.64934
+      value: -1.94
       objectReference: {fileID: 0}
     - target: {fileID: 477809995688809769, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8376532
+      value: -1.69
       objectReference: {fileID: 0}
     - target: {fileID: 477809995688809769, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1421,6 +1421,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5434806739954793517, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.897
+      objectReference: {fileID: 0}
+    - target: {fileID: 5434806739954793517, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
 --- !u!1001 &2557236066034162998
@@ -1430,25 +1438,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 963387157917113333, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
-      propertyPath: traceRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 963387157917113333, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
-      propertyPath: attackRange
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1779405616792946824, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1779405616792946824, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.42
+      value: 5.37
       objectReference: {fileID: 0}
     - target: {fileID: 1779405616792946824, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.49
+      value: -1.45
       objectReference: {fileID: 0}
     - target: {fileID: 1779405616792946824, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_LocalPosition.z
