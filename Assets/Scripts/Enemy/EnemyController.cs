@@ -6,13 +6,14 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
-    public enum EnemyState { Idle, Trace, Return, Attack, Die, Size }
+    public enum EnemyState { Idle, Return, Attack, Die, Size }
     [Header("Current State")]
     [SerializeField] EnemyState curState;
     private BaseState[] states = new BaseState[(int)EnemyState.Size];
 
     [Header("Enemy Settings")]
     [SerializeField] GameObject player;
+    [SerializeField] GameObject target;
     [SerializeField] GameObject bulletObj;
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer render;
@@ -23,10 +24,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("State Settings")]
     [SerializeField] IdleState idleState;
-    [SerializeField] TraceState traceState;
-    [SerializeField] ReturnState returnState;
     [SerializeField] AttackState attackState;
-    [SerializeField] DieState dieState;
 
     [Header("Model")]
     [SerializeField] EnemyModel enemyModel;
@@ -34,10 +32,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         states[(int)EnemyState.Idle] = idleState;
-        states[(int)EnemyState.Trace] = traceState;
-        states[(int)EnemyState.Return] = returnState;
         states[(int)EnemyState.Attack] = attackState;
-        states[(int)EnemyState.Die] = dieState;
     }
 
     private void Start()
@@ -64,14 +59,12 @@ public class EnemyController : MonoBehaviour
             if (curState == EnemyState.Attack)
             {
                 GameObject bulletGameObject = Instantiate(bulletObj, transform.position, transform.rotation);
-                Bullet bullet = bulletGameObject.GetComponent<Bullet>();
-                bullet.SetDestination(player.transform.position);
 
                 remainTime = fireTime;
             }
         }
     }
-    
+
     public void ChangeState(EnemyState nextState)
     {
         states[(int)curState].Exit();
@@ -86,57 +79,13 @@ public class EnemyController : MonoBehaviour
 
         public override void Update()
         {
-            if (Vector2.Distance(enemy.transform.position, enemy.player.transform.position) < enemy.enemyModel.TraceRange)
-            {
-                enemy.ChangeState(EnemyState.Trace);
-            }
-            else if (Vector2.Distance(enemy.transform.position, enemy.player.transform.position) < enemy.enemyModel.AttackRange)
+            if (enemy.target.transform.position != null)
             {
                 enemy.ChangeState(EnemyState.Attack);
             }
-            else if (enemy.enemyModel.CurHP <= 0)
-            {
-                Destroy(enemy.gameObject);
-            }
-        }
-    }
-
-    [System.Serializable]
-    private class TraceState : BaseState
-    {
-        [SerializeField] EnemyController enemy;
-
-        public override void Update()
-        {
-            enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, enemy.player.transform.position, enemy.enemyModel.MoveSpeed * Time.deltaTime);
-
-            if (Vector2.Distance(enemy.transform.position, enemy.player.transform.position) > enemy.enemyModel.TraceRange)
-            {
-                enemy.ChangeState(EnemyState.Return);
-            }
-            else if (enemy.enemyModel.CurHP <= 0)
-            {
-                Destroy(enemy.gameObject);
-            }
-        }
-    }
-
-    [System.Serializable]
-    private class ReturnState : BaseState
-    {
-        [SerializeField] EnemyController enemy;
-
-        public override void Update()
-        {
-            enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, enemy.startPos, enemy.enemyModel.ReturnSpeed * Time.deltaTime);
-
-            if (Vector2.Distance(enemy.transform.position, enemy.startPos) < 0.01f)
+            else if (enemy.player == null)
             {
                 enemy.ChangeState(EnemyState.Idle);
-            }
-            else if (Vector2.Distance(enemy.transform.position, enemy.player.transform.position) < enemy.enemyModel.TraceRange)
-            {
-                enemy.ChangeState(EnemyState.Trace);
             }
         }
     }
@@ -148,21 +97,10 @@ public class EnemyController : MonoBehaviour
 
         public override void Update()
         {
-            if (Vector2.Distance(enemy.transform.position, enemy.startPos) < enemy.enemyModel.AttackRange)
+            if (enemy.player == null)
             {
                 enemy.ChangeState(EnemyState.Idle);
             }
-        }
-    }
-
-    [System.Serializable]
-    private class DieState : BaseState
-    {
-        [SerializeField] EnemyController enemy;
-
-        public override void Update()
-        {
-            Destroy(enemy.gameObject);
         }
     }
 }

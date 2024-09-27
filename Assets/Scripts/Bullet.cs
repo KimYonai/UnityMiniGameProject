@@ -5,17 +5,21 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] SpriteRenderer enemyRender;
+    [SerializeField] Transform target;
     [SerializeField] Vector2 destination;
     [SerializeField] float speed;
 
     private void Start()
     {
-        rb.velocity = Vector2.left * speed;
-    }
-
-    public void SetDestination(Vector2 destination)
-    {
-        this.destination = destination;
+        if (enemyRender.flipX == true)
+        {
+            rb.velocity = Vector2.right * speed;
+        }
+        else
+        {
+            rb.velocity = Vector2.left * speed;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
