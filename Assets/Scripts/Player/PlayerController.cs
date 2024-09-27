@@ -8,10 +8,14 @@ public class PlayerController : MonoBehaviour
     [Header("Current State")]
     [SerializeField] PlayerState curState;
 
-    [Header("Move Settings")]
+    [Header("Player Settings")]
     [SerializeField] GameObject player;
+    [SerializeField] GameObject bulletObj;
+    [SerializeField] Transform muzzlePoint;
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer render;
+    [SerializeField] float fireTime;
+    [SerializeField] float remainTime;
     [SerializeField] bool isMove;
     [SerializeField] bool isGrounded;
 
@@ -26,10 +30,13 @@ public class PlayerController : MonoBehaviour
     [Header("Model")]
     [SerializeField] PlayerModel playerModel;
 
+    Coroutine ThrowShuriken;
+
     private void Start()
     {
         curState = PlayerState.Idle;
         playerModel.CurHP = playerModel.MaxHP;
+        remainTime = fireTime;
     }
 
     private void FixedUpdate()
@@ -63,6 +70,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayerJump();
+        }
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Instantiate(bulletObj, muzzlePoint.position, muzzlePoint.rotation);
         }
 
         GroundCheck();
@@ -126,6 +138,18 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
+   private void PlayerShoot()
+   {
+       remainTime -= Time.deltaTime;
+   
+       if (remainTime <= 0)
+       {
+           GameObject bulletGameObject = Instantiate(bulletObj, muzzlePoint.position, muzzlePoint.rotation);
+       }
+   
+       remainTime = fireTime;
+   }
 
     public void TakeHit()
     {

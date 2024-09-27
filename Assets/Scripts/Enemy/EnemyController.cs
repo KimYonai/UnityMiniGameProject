@@ -26,10 +26,10 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        enemyModel.CurHP = enemyModel.MaxHP;
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
         remainTime = fireTime;
-
     }
 
     private void Update()

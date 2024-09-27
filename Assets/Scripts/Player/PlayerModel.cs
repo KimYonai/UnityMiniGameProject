@@ -9,8 +9,7 @@ public class PlayerModel : MonoBehaviour
     public int MaxHP { get { return maxHP; } set { maxHP = value; } }
 
     [SerializeField] int curHP;
-    public int CurHP { get { return curHP; } set { curHP = value; OnHPChanged?.Invoke(curHP); } }
-    public UnityAction<int> OnHPChanged;
+    public int CurHP { get { return curHP; } set { curHP = value; } }
 
     [SerializeField] float moveSpeed;
     public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
