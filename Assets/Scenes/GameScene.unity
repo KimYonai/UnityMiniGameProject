@@ -122,6 +122,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &69328523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3531869684511810230, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
+  m_PrefabInstance: {fileID: 2557236066034162998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &69328532
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69328523}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b9f9d66a8ae9214bb7dadd9e1fafd89, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &272367899 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 477809995688809779, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
@@ -1461,6 +1487,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 963387157917113333, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
+      propertyPath: traceRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 963387157917113333, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
+      propertyPath: attackRange
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1779405616792946824, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
       propertyPath: m_RootOrder
       value: 3

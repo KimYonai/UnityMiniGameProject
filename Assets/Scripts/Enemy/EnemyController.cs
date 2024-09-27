@@ -21,6 +21,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float remainTime;
     [SerializeField] bool isTrace;
 
+    [Header("Animation")]
+    [SerializeField] Animator animator;
+    private static int idleHash = Animator.StringToHash("Idle");
+    private static int AttackHash = Animator.StringToHash("Jump");
+    private int curAniHash;
+
     [Header("Model")]
     [SerializeField] EnemyModel enemyModel;
 
@@ -64,6 +70,26 @@ public class EnemyController : MonoBehaviour
     public void TakeHit()
     {
         enemyModel.CurHP--;
+    }
+
+    private void AnimationPlay()
+    {
+        int checkAniHash;
+
+        if (curState == EnemyState.Attack)
+        {
+            checkAniHash = AttackHash;
+        }
+        else
+        {
+            checkAniHash = idleHash;
+        }
+
+        if (curAniHash != checkAniHash)
+        {
+            curAniHash = checkAniHash;
+            animator.Play(curAniHash);
+        }
     }
 
     private void Idle()
