@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d48ad656f23d684abd9b1780585ad57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPos: {fileID: 0}
-  direction: {x: 0, y: 0}
-  speed: 5
+  rb: {fileID: 385470124}
+  destination: {x: 0, y: 0}
+  speed: 10
 --- !u!50 &385470124
 Rigidbody2D:
   serializedVersion: 4

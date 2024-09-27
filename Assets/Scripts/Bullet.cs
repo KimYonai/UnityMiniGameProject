@@ -4,30 +4,28 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] Transform playerPos;
-    [SerializeField] Vector2 direction;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Vector2 destination;
     [SerializeField] float speed;
 
     private void Start()
     {
-        playerPos = GameObject.Find("Player").GetComponent<Transform>();
-        direction = playerPos.position - transform.position;
-        GetComponent<Rigidbody2D>().AddForce(direction * Time.deltaTime * 100000);
-
-        Destroy(gameObject, 3.0f);
+        rb.velocity = Vector2.left * speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void SetDestination(Vector2 destination)
     {
-        if (collision.tag == "Player")
+        this.destination = destination;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            PlayerController player = GetComponent<PlayerController>();
-            player.TakeHit();
-            Destroy(gameObject);
+            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            playerController.TakeHit();
         }
-        else if (collision != null)
-        {
-            Destroy(gameObject);
-        }
+
+        Destroy(gameObject);
     }
 }

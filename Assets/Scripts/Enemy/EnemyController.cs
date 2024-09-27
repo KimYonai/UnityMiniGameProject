@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
@@ -57,14 +58,19 @@ public class EnemyController : MonoBehaviour
         states[(int)curState].Update();
 
         remainTime -= Time.deltaTime;
-        
-        if (curState == EnemyState.Attack && remainTime <= 0)
+
+        if (remainTime <= 0)
         {
-            Instantiate(bulletObj, transform.position, transform.rotation);
-            remainTime = fireTime;
+            if (curState == EnemyState.Attack)
+            {
+                GameObject bulletGameObject = Instantiate(bulletObj, transform.position, transform.rotation);
+                Bullet bullet = bulletGameObject.GetComponent<Bullet>();
+                bullet.SetDestination(player.transform.position);
+
+                remainTime = fireTime;
+            }
         }
     }
-
     
     public void ChangeState(EnemyState nextState)
     {
