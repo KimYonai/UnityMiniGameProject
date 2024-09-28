@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9090029816150120078}
   - component: {fileID: 4730126643947615921}
   - component: {fileID: 6908056475128792976}
+  - component: {fileID: 2865750377491458907}
   - component: {fileID: 385470124}
   - component: {fileID: 3116696921325525938}
   m_Layer: 7
@@ -100,10 +101,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 385470124}
-  enemyRender: {fileID: 1450573508727440145, guid: 2fffac6767f38034cbb893311f7a381f, type: 3}
-  target: {fileID: 0}
-  destination: {x: 0, y: 0}
-  speed: 3
+  pooledObject: {fileID: 2865750377491458907}
+  speed: 5
+  returnTime: 5
+--- !u!114 &2865750377491458907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187412739852176016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa94e1d965098347b2493c38b8a0261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  returnPool: {fileID: 0}
 --- !u!50 &385470124
 Rigidbody2D:
   serializedVersion: 4
@@ -135,7 +148,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.00000008940697}

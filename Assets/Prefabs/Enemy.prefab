@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 963387157917113333}
   - component: {fileID: 2532158427199141768}
   - component: {fileID: 2630927922389247757}
-  - component: {fileID: 4343628606600524377}
-  - component: {fileID: 69328531}
+  - component: {fileID: 1327048415944922357}
+  - component: {fileID: 69328532}
+  - component: {fileID: 2791462683513667146}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
@@ -106,8 +107,8 @@ MonoBehaviour:
   moveSpeed: 5
   returnSpeed: 3
   bulletSpeed: 10
-  traceRange: 0
-  attackRange: 5
+  traceRange: 5
+  attackRange: 0
   attackPoint: 0
 --- !u!114 &2532158427199141768
 MonoBehaviour:
@@ -138,16 +139,54 @@ MonoBehaviour:
   target: {fileID: 0}
   bulletObj: {fileID: 5187412739852176016, guid: 782b1ca7ff8355e4e9c7ac6bad2f1d2a, type: 3}
   playerController: {fileID: 0}
+  bulletPool:
+  - {fileID: 0}
   startPos: {x: 0, y: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  fireTime: 2
-  remainTime: 0
   isTrace: 0
+  animator: {fileID: 69328532}
   enemyModel: {fileID: 963387157917113333}
---- !u!60 &4343628606600524377
-PolygonCollider2D:
+--- !u!114 &1327048415944922357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3531869684511810230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e473e2d191dd28e4cbbeb2d864fc7b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8286996698527007100, guid: 782b1ca7ff8355e4e9c7ac6bad2f1d2a, type: 3}
+  empty: 1
+  size: 5
+  capacity: 10
+--- !u!95 &69328532
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3531869684511810230}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b9f9d66a8ae9214bb7dadd9e1fafd89, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &2791462683513667146
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -156,56 +195,9 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.25, y: 2.125}
-    newSize: {x: 2.25, y: 2.125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.26535225, y: 0.83349824}
-      - {x: 0.016809702, y: 0.84835553}
-      - {x: -0.21206367, y: 0.81864095}
-      - {x: -0.53260756, y: 0.62230206}
-      - {x: -0.95542777, y: 0.53020954}
-      - {x: -1.0209982, y: 0.5}
-      - {x: -1.0061408, y: 0.09479046}
-      - {x: -0.58489084, y: -0.19933677}
-      - {x: -0.5240687, y: -0.63114166}
-      - {x: -0.104497075, y: -0.94363916}
-      - {x: 0.17571306, y: -0.92878354}
-      - {x: 0.4226427, y: -0.7474245}
-      - {x: 0.5418532, y: -0.5862143}
-      - {x: 0.57154226, y: -0.19597197}
-      - {x: 1.0061407, y: 0.1900754}
-      - {x: 0.99128294, y: 0.51178694}
-      - {x: 0.5394211, y: 0.57785225}
---- !u!50 &69328531
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3531869684511810230}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Offset: {x: 0.0036834478, y: -0.061387777}
+  m_Size: {x: 1.1622088, y: 1.7441647}
+  m_Direction: 0

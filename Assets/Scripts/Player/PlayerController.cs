@@ -30,8 +30,6 @@ public class PlayerController : MonoBehaviour
     [Header("Model")]
     [SerializeField] PlayerModel playerModel;
 
-    Coroutine ThrowShuriken;
-
     private void Start()
     {
         curState = PlayerState.Idle;

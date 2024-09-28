@@ -15,10 +15,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject target;
     [SerializeField] GameObject bulletObj;
     [SerializeField] PlayerController playerController;
+    [SerializeField] ObjectPool[] bulletPool;
+    private ObjectPool curBulletPool;
     [SerializeField] Vector2 startPos;
     [SerializeField] LayerMask playerLayer;
-    [SerializeField] float fireTime;
-    [SerializeField] float remainTime;
     [SerializeField] bool isTrace;
 
     [Header("Animation")]
@@ -33,9 +33,9 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         enemyModel.CurHP = enemyModel.MaxHP;
+        curBulletPool = bulletPool[0];
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
-        remainTime = fireTime;
     }
 
     private void Update()
@@ -129,19 +129,7 @@ public class EnemyController : MonoBehaviour
 
     private void Attack()
     {
-        remainTime -= Time.deltaTime;
-
-        if (remainTime <= 0)
-        {
-            GameObject bulletGameObject = Instantiate(bulletObj, transform.position, transform.rotation);
-
-            remainTime = fireTime;
-        }
-
-        if (enemyModel.CurHP <= 0)
-        {
-            curState = EnemyState.Die;
-        }
+        curBulletPool.GetPool(transform.position, transform.rotation);
     }
 
     private void Die()
