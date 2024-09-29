@@ -93,4 +93,9 @@ public class GameManager : MonoBehaviour
         pressKeyText.gameObject.SetActive(false);
         loadingImage.gameObject.SetActive(false);
     }
+
+    public void OnClickSettingButton()
+    {
+        SceneManager.LoadScene("SettingScene");
+    }
 }
