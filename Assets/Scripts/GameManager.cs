@@ -98,4 +98,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("SettingScene");
     }
+
+    public void GameQuit()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
 }
