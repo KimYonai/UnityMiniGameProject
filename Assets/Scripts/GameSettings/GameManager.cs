@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] RawImage loadingImage;
     [SerializeField] Slider loadingBar;
     [SerializeField] TextMeshProUGUI pressKeyText;
+    [SerializeField] AudioSource BGM;
 
     private void Awake()
     {
@@ -51,6 +52,8 @@ public class GameManager : MonoBehaviour
             return;
 
         loadingRoutine = StartCoroutine(LoadingRoutine(sceneName));
+
+        BGM.gameObject.SetActive(false);
     }
 
     Coroutine loadingRoutine;

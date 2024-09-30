@@ -29,12 +29,18 @@ public class PlayerController : MonoBehaviour
     private static int fallHash = Animator.StringToHash("Fall");
     private int curAniHash;
 
+    [Header("Sound")]
+    [SerializeField] AudioSource playBGM;
+    [SerializeField] AudioSource gameOverBGM;
+
     [Header("Model")]
     [SerializeField] PlayerModel playerModel;
 
     private void Start()
     {
         curState = PlayerState.Idle;
+        playBGM.gameObject.SetActive(true);
+        gameOverBGM.gameObject.SetActive(false);
         playerModel.CurHP = playerModel.MaxHP;
         remainTime = fireTime;
         gameOver.SetActive(false);
@@ -240,12 +246,8 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(gameObject);
 
+        playBGM.gameObject.SetActive(false);
+        gameOverBGM.gameObject.SetActive(true);
         gameOver.SetActive(true);
     }
-
-    // 재시작 기능을 어디에 추가해야 할까?
-    //public void OnClickRestart()
-    //{
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //}
 }
