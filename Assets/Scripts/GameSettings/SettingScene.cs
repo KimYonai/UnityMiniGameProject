@@ -35,7 +35,6 @@ public class SettingScene : MonoBehaviour
         settingBGM.SetActive(true);
     }
 
-    // Slider를 통해 걸어놓은 이벤트
     public void SetBGMVolume(float volume)
     {
         audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
