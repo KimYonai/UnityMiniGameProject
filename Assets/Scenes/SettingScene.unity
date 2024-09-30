@@ -1459,6 +1459,7 @@ MonoBehaviour:
   BGMSlider: {fileID: 726448942}
   BGMMute: {fileID: 134645516}
   settingBGM: {fileID: 1044331019}
+  gameManager: {fileID: 0}
 --- !u!4 &1395225324
 Transform:
   m_ObjectHideFlags: 0

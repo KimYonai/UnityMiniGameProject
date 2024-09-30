@@ -14,6 +14,7 @@ public class GameScene : MonoBehaviour
     [SerializeField] private Toggle BGMMute;
     [SerializeField] GameObject pauseWindow;
     [SerializeField] bool isPause;
+    [SerializeField] GameManager gameManager;
 
     private void Awake()
     {

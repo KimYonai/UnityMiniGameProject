@@ -13,10 +13,12 @@ public class SettingScene : MonoBehaviour
     [SerializeField] private Slider BGMSlider;	
     [SerializeField] private Toggle BGMMute;
     [SerializeField] GameObject settingBGM;
+    [SerializeField] GameManager gameManager;
 
 
     private void Awake()
     {
+        gameManager = GetComponent<GameManager>();
         BGMSlider.onValueChanged.AddListener(SetBGMVolume);
         BGMMute.onValueChanged.AddListener(SetBGMMute);
     }
@@ -49,5 +51,6 @@ public class SettingScene : MonoBehaviour
     public void BackToLobby()
     {
         SceneManager.LoadScene("LobbyScene");
+        
     }
 }

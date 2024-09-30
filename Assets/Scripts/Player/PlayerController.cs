@@ -36,9 +36,12 @@ public class PlayerController : MonoBehaviour
     [Header("Model")]
     [SerializeField] PlayerModel playerModel;
 
+    private GameManager gameManager;
+
     private void Start()
     {
         curState = PlayerState.Idle;
+        gameManager = GetComponent<GameManager>();
         playBGM.gameObject.SetActive(true);
         gameOverBGM.gameObject.SetActive(false);
         playerModel.CurHP = playerModel.MaxHP;
