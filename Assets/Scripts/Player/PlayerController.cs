@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] GameObject player;
     [SerializeField] GameObject bulletObj;
+    [SerializeField] GameObject gameOver;
     [SerializeField] Transform muzzlePoint;
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer render;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         curState = PlayerState.Idle;
         playerModel.CurHP = playerModel.MaxHP;
         remainTime = fireTime;
+        gameOver.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -236,6 +239,13 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
-        // 게임오버 UI 출력과 시작 화면으로 돌아가기 구현
+
+        gameOver.SetActive(true);
     }
+
+    // 재시작 기능을 어디에 추가해야 할까?
+    //public void OnClickRestart()
+    //{
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
 }
