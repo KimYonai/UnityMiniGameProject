@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] GameObject player;
     [SerializeField] GameObject bulletObj;
+    [SerializeField] float bulletSpeed;
     [SerializeField] GameObject gameOver;
     [SerializeField] Transform muzzlePoint;
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer render;
+    [SerializeField] SpriteRenderer bulletRender;
     [SerializeField] float fireTime;
     [SerializeField] float remainTime;
     [SerializeField] bool isMove;
@@ -159,13 +161,18 @@ public class PlayerController : MonoBehaviour
        if (remainTime <= 0)
        {
             Vector3 dir = transform.right * transform.localScale.x;
-            GameObject bullet = Instantiate(bulletObj, transform.position + dir, Quaternion.identity);
 
-            float bulletDir = transform.localScale.x > 0 ? 1f : -1f;
-            bulletObj.transform.localScale = new Vector3(bulletDir, 1f, 1f);
+            if (render.flipX == false)
+            {
+                bulletRender.flipX = false;
+                Instantiate(bulletObj, transform.position + dir, Quaternion.identity);
+            }
+            else
+            {
+                bulletRender.flipX = true;
+                Instantiate(bulletObj, transform.position - dir, Quaternion.identity);
+            }
             
-            bulletObj.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Impulse);
-   
             remainTime = fireTime;
        }
    }

@@ -5,13 +5,23 @@ using UnityEngine;
 public class Shuriken : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
-    //[SerializeField] PlayerController player;
     [SerializeField] float speed;
+    [SerializeField] SpriteRenderer render;
 
     private void Start()
     {
         //player = GetComponent<PlayerController>();
         //GetComponent<Rigidbody2D>().AddForce(transform.right * speed, ForceMode2D.Impulse);
+        if (render.flipX == false)
+        {
+            rb.velocity = Vector2.right * speed;
+        }
+        else
+        {
+            rb.velocity = Vector2.left * speed;
+        }
+        
+
         Destroy(gameObject, 3.0f);
     }
 

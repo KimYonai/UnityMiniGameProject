@@ -7138,9 +7138,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 771656586}
     - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: fireTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 603041937}
+    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: bulletObj_L
+      value: 
+      objectReference: {fileID: 838256267271040969, guid: ba94fa73c9489e748a817e8912623cc1, type: 3}
+    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: bulletObj_R
+      value: 
+      objectReference: {fileID: 8481984948202472981, guid: 103c572190b3255429b215f0a52cf222, type: 3}
+    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: bulletSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: gameOverBGM
       value: 
@@ -7149,9 +7165,25 @@ PrefabInstance:
       propertyPath: muzzlePoint
       value: 
       objectReference: {fileID: 1099814552}
+    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: bulletRender
+      value: 
+      objectReference: {fileID: 5214525077818929374, guid: 103c572190b3255429b215f0a52cf222, type: 3}
+    - target: {fileID: 477809995688809780, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: muzzlePoint_R
+      value: 
+      objectReference: {fileID: 1099814552}
     - target: {fileID: 477809995688809782, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
       propertyPath: maxHP
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 834869057411904333, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569358534891078582, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
+      propertyPath: m_Name
+      value: MuzzlePoint_R
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
