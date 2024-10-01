@@ -94,7 +94,7 @@ public class EnemyController : MonoBehaviour
 
     private void Idle()
     {
-        if (Physics2D.OverlapCircle(transform.position, 5, playerLayer) == true)
+        if (Physics2D.OverlapCircle(transform.position, enemyModel.TraceRange, playerLayer) == true)
         {
             curState = EnemyState.Trace;
         }

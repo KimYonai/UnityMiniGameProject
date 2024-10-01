@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     [SerializeField] PooledObject pooledObject;
+    [SerializeField] GameObject player;
     [SerializeField] float speed;
     [SerializeField] float returnTime;
 
@@ -18,7 +19,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        rb.velocity = Vector2.left * speed;
+        rb.velocity = new Vector2(player.transform.position.x, player.transform.position.y) * speed;
 
         remainTime -= Time.deltaTime;
 

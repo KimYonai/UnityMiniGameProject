@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -56,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        remainTime -= Time.deltaTime;
+
         #region State Switch
         switch (curState)
         {
@@ -84,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.L))
         {
-            Instantiate(bulletObj, muzzlePoint.position, muzzlePoint.rotation);
+            PlayerShoot();
         }
 
         GroundCheck();
@@ -151,14 +154,20 @@ public class PlayerController : MonoBehaviour
 
    private void PlayerShoot()
    {
-       remainTime -= Time.deltaTime;
+       
    
        if (remainTime <= 0)
        {
-           GameObject bulletGameObject = Instantiate(bulletObj, muzzlePoint.position, muzzlePoint.rotation);
-       }
+            Vector3 dir = transform.right * transform.localScale.x;
+            GameObject bullet = Instantiate(bulletObj, transform.position + dir, Quaternion.identity);
+
+            float bulletDir = transform.localScale.x > 0 ? 1f : -1f;
+            bulletObj.transform.localScale = new Vector3(bulletDir, 1f, 1f);
+            
+            bulletObj.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Impulse);
    
-       remainTime = fireTime;
+            remainTime = fireTime;
+       }
    }
 
     public void TakeHit()

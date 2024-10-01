@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 385470124}
   pooledObject: {fileID: 2865750377491458907}
+  player: {fileID: 477809995688809779, guid: 1eeacf5ea7609514e83045fa999dd70a, type: 3}
   speed: 5
   returnTime: 5
 --- !u!114 &2865750377491458907
