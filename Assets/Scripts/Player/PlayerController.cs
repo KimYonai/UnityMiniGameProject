@@ -34,10 +34,6 @@ public class PlayerController : MonoBehaviour
     private static int fallHash = Animator.StringToHash("Fall");
     private int curAniHash;
 
-    [Header("Sound")]
-    [SerializeField] AudioSource playBGM;
-    [SerializeField] AudioSource gameOverBGM;
-
     [Header("Model")]
     [SerializeField] PlayerModel playerModel;
 
@@ -47,8 +43,6 @@ public class PlayerController : MonoBehaviour
     {
         curState = PlayerState.Idle;
         gameManager = GetComponent<GameManager>();
-        playBGM.gameObject.SetActive(true);
-        gameOverBGM.gameObject.SetActive(false);
         playerModel.CurHP = playerModel.MaxHP;
         remainTime = fireTime;
         
@@ -270,8 +264,6 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
 
         playerDeadParticle.Play();
-        playBGM.gameObject.SetActive(false);
-        gameOverBGM.gameObject.SetActive(true);
         gameOver.SetActive(true);
     }
 }

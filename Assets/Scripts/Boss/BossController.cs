@@ -19,6 +19,7 @@ public class BossController : MonoBehaviour
     [SerializeField] Vector2 startPos;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] bool isTrace;
+    [SerializeField] GameObject gameClear;
 
     [Header("Model")]
     [SerializeField] BossModel bossModel;
@@ -27,6 +28,7 @@ public class BossController : MonoBehaviour
     {
         bossModel.CurHP = bossModel.MaxHP;
         startPos = transform.position;
+        gameClear.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -135,6 +137,8 @@ public class BossController : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+
+        gameClear.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

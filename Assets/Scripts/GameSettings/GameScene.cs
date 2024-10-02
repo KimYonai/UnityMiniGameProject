@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -13,10 +14,13 @@ public class GameScene : MonoBehaviour
     [SerializeField] private Slider BGMSlider;
     [SerializeField] private Toggle BGMMute;
     [SerializeField] GameObject pauseWindow;
+    [SerializeField] GameObject player;
     [SerializeField] GameObject boss;
-    [SerializeField] GameObject gameClear;
     [SerializeField] bool isPause;
     [SerializeField] GameManager gameManager;
+    [SerializeField] AudioSource gameBGM;
+    [SerializeField] AudioSource gameOverBGM;
+    [SerializeField] AudioSource gameClearBGM;
 
     private void Awake()
     {
@@ -35,9 +39,11 @@ public class GameScene : MonoBehaviour
             BGMSlider.value = 0.5f;
         }
 
-        gameClear.SetActive(false);
-
         audioMixer.SetFloat("Master", Mathf.Log10(BGMSlider.value) * 20);
+
+        gameBGM.gameObject.SetActive(true);
+        gameOverBGM.gameObject.SetActive(false);
+        gameClearBGM.gameObject.SetActive(false);
 
         pauseWindow.SetActive(false);
         isPause = false;
@@ -50,9 +56,18 @@ public class GameScene : MonoBehaviour
             GamePause();
         }
 
+        if (player == null)
+        {
+            gameBGM.gameObject.SetActive(false);
+            gameOverBGM.gameObject.SetActive(true);
+            gameClearBGM.gameObject.SetActive(false);
+        }
+
         if (boss == null)
         {
-            gameClear.SetActive(true);
+            gameBGM.gameObject.SetActive(false);
+            gameOverBGM.gameObject.SetActive(false);
+            gameClearBGM.gameObject.SetActive(true);
         }
     }
 
