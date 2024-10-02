@@ -13,6 +13,8 @@ public class GameScene : MonoBehaviour
     [SerializeField] private Slider BGMSlider;
     [SerializeField] private Toggle BGMMute;
     [SerializeField] GameObject pauseWindow;
+    [SerializeField] GameObject boss;
+    [SerializeField] GameObject gameClear;
     [SerializeField] bool isPause;
     [SerializeField] GameManager gameManager;
 
@@ -29,7 +31,11 @@ public class GameScene : MonoBehaviour
             BGMSlider.value = PlayerPrefs.GetFloat("Volume");
         }
         else
+        {
             BGMSlider.value = 0.5f;
+        }
+
+        gameClear.SetActive(false);
 
         audioMixer.SetFloat("Master", Mathf.Log10(BGMSlider.value) * 20);
 
@@ -42,6 +48,11 @@ public class GameScene : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             GamePause();
+        }
+
+        if (boss == null)
+        {
+            gameClear.SetActive(true);
         }
     }
 

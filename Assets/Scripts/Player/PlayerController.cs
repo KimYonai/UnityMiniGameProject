@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform muzzlePoint;
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer render;
-    public SpriteRenderer Render {  get { return render; } }
+    public SpriteRenderer Render { get { return render; } }
     [SerializeField] SpriteRenderer bulletRender;
     [SerializeField] ParticleSystem playerDeadParticle;
     [SerializeField] float fireTime;
@@ -269,9 +269,9 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(gameObject);
 
+        playerDeadParticle.Play();
         playBGM.gameObject.SetActive(false);
         gameOverBGM.gameObject.SetActive(true);
         gameOver.SetActive(true);
-        playerDeadParticle.Play();
     }
 }

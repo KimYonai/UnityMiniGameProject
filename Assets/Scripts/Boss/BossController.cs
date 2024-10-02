@@ -126,9 +126,9 @@ public class BossController : MonoBehaviour
             rigid.velocity = Vector2.left * bossModel.RushSpeed;
         }
 
-        if (Vector2.Distance(transform.position, player.transform.position) < 0.01f)
+        if (bossModel.CurHP <= 0)
         {
-            playerController.TakeHit();
+            curState = BossState.Die;
         }
     }
 
