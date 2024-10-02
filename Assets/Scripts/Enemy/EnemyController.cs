@@ -12,14 +12,16 @@ public class EnemyController : MonoBehaviour
 
     [Header("Enemy Settings")]
     [SerializeField] GameObject player;
-    [SerializeField] GameObject target;
+    [SerializeField] Transform target;
     [SerializeField] GameObject bulletObj;
     [SerializeField] PlayerController playerController;
     [SerializeField] ObjectPool[] bulletPool;
     private ObjectPool curBulletPool;
+    [SerializeField] SpriteRenderer render;
     [SerializeField] Vector2 startPos;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] bool isTrace;
+    [SerializeField] float fireTime;
 
     [Header("Animation")]
     [SerializeField] Animator animator;
@@ -56,9 +58,9 @@ public class EnemyController : MonoBehaviour
                 Trace(); 
                 break;
 
-            case EnemyState.Attack:
-                Attack(); 
-                break;
+            //case EnemyState.Attack:
+            //    Attack(); 
+            //    break;
 
             case EnemyState.Die:
                 Die();
@@ -98,10 +100,10 @@ public class EnemyController : MonoBehaviour
         {
             curState = EnemyState.Trace;
         }
-        else if (enemyModel.AttackRange > 1)
-        {
-            curState = EnemyState.Attack;
-        }
+        //else if (enemyModel.AttackRange > 1)
+        //{
+        //    curState = EnemyState.Attack;
+        //}
         else if (enemyModel.CurHP <= 0)
         {
             curState = EnemyState.Die;
@@ -117,7 +119,7 @@ public class EnemyController : MonoBehaviour
             playerController.TakeHit();
         }
 
-        if (Physics2D.OverlapCircle(transform.position, 5, playerLayer) == false)
+        if (Physics2D.OverlapCircle(transform.position, enemyModel.TraceRange, playerLayer) == false)
         {
             curState = EnemyState.Idle;
         }
@@ -127,10 +129,27 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void Attack()
-    {
-        curBulletPool.GetPool(transform.position, transform.rotation);
-    }
+   //private void Attack()
+   //{
+   //    //curBulletPool.GetPool(transform.position, transform.rotation);
+   //    //fireTime += Time.deltaTime;
+   //    //
+   //    //if (fireTime > 3)
+   //    //{
+   //    //    GameObject bulletGameObject = Instantiate(bulletObj, transform.position, transform.rotation);
+   //    //    Bullet bullet = bulletGameObject.GetComponent<Bullet>();
+   //    //    bullet.SetDestination(target.position);
+   //    //
+   //    //    fireTime = 0;
+   //    //}
+   //    fireTime += Time.deltaTime;
+   //
+   //    if (fireTime >= 2f)
+   //    {
+   //        fireTime = 0;
+   //        GameObject bullet = Instantiate(bulletObj, transform.position, Quaternion.identity);
+   //    }
+   //}
 
     private void Die()
     {

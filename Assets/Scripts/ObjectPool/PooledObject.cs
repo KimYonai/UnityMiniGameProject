@@ -5,6 +5,13 @@ using UnityEngine;
 public class PooledObject : MonoBehaviour
 {
     public ObjectPool returnPool;
+    [SerializeField] GameObject objectPool;
+
+    private void Start()
+    {
+        objectPool = GameObject.FindGameObjectWithTag("Enemy");
+        returnPool = objectPool.GetComponent<ObjectPool>();
+    }
 
     public void ReturnToPool()
     {

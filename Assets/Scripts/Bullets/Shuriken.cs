@@ -10,8 +10,6 @@ public class Shuriken : MonoBehaviour
 
     private void Start()
     {
-        //player = GetComponent<PlayerController>();
-        //GetComponent<Rigidbody2D>().AddForce(transform.right * speed, ForceMode2D.Impulse);
         if (render.flipX == false)
         {
             rb.velocity = Vector2.right * speed;
@@ -23,19 +21,6 @@ public class Shuriken : MonoBehaviour
         
 
         Destroy(gameObject, 3.0f);
-    }
-
-    //private void OnEnable()
-    //{
-    //    rb.AddRelativeForce(rb.velocity);
-    //}
-
-    private void Update()
-    {
-        //transform.Translate(Vector2.one * speed * Time.deltaTime);
-        
-
-        //player.gameObject.render.flipX
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

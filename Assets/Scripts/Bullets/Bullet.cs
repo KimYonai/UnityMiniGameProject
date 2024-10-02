@@ -5,36 +5,60 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
-    [SerializeField] PooledObject pooledObject;
-    [SerializeField] GameObject player;
-    [SerializeField] float speed;
-    [SerializeField] float returnTime;
-
-    private float remainTime;
-
-    private void OnEnable()
+    //[SerializeField] PooledObject pooledObject;
+    //[SerializeField] GameObject player;
+    [SerializeField] Transform target;
+    [SerializeField] Vector2 destination;
+    //[SerializeField] float speed;
+    //[SerializeField] float returnTime;
+    //
+    //private float remainTime;
+    //
+    //private void Start()
+    //{
+    //    //remainTime = returnTime;
+    //    //player = GameObject.FindGameObjectWithTag("Player");
+    //    //target = player.transform;
+    //
+    //    //transform.LookAt(destination);
+    //    rb.velocity = player.transform.position;
+    //    //rb.velocity = destination;
+    //}
+    //
+    //public void SetDestination(Vector2 destination)
+    //{
+    //    this.destination = destination;
+    //}
+    //
+    //private void Update()
+    //{
+    //    //remainTime -= Time.deltaTime;
+    //    //
+    //    //transform.LookAt(destination);
+    //    //Bullet bullet = GetComponent<Bullet>();
+    //    //bullet.SetDestination(target.position);
+    //    //rb.velocity = player.transform.position * speed;
+    //    //
+    //    //if (remainTime < 0)
+    //    //{
+    //    //    pooledObject.ReturnToPool();
+    //    //}
+    //}
+    //
+    //private void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    if (collider.gameObject.tag == "Player")
+    //    {
+    //        PlayerController playerController = collider.gameObject.GetComponent<PlayerController>();
+    //        playerController.TakeHit();
+    //    }
+    //}
+    private void Start()
     {
-        remainTime = returnTime;
-    }
+        target = GameObject.Find("Player").GetComponent<Transform>();
+        destination = target.position - transform.position;
+        GetComponent<Rigidbody2D>().AddForce(destination.normalized * Time.deltaTime * 100000);
 
-    private void Update()
-    {
-        rb.velocity = new Vector2(player.transform.position.x, player.transform.position.y) * speed;
-
-        remainTime -= Time.deltaTime;
-
-        if (remainTime < 0)
-        {
-            pooledObject.ReturnToPool();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            PlayerController playerController = collider.gameObject.GetComponent<PlayerController>();
-            playerController.TakeHit();
-        }
+        Destroy(gameObject, 3f);
     }
 }
