@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer render;
     public SpriteRenderer Render {  get { return render; } }
     [SerializeField] SpriteRenderer bulletRender;
+    [SerializeField] ParticleSystem playerDeadParticle;
     [SerializeField] float fireTime;
     [SerializeField] float remainTime;
     [SerializeField] bool isMove;
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
         gameOverBGM.gameObject.SetActive(false);
         playerModel.CurHP = playerModel.MaxHP;
         remainTime = fireTime;
+        
         gameOver.SetActive(false);
     }
 
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         remainTime -= Time.deltaTime;
+        playerDeadParticle.transform.position = transform.position;
 
         #region State Switch
         switch (curState)
@@ -269,5 +272,6 @@ public class PlayerController : MonoBehaviour
         playBGM.gameObject.SetActive(false);
         gameOverBGM.gameObject.SetActive(true);
         gameOver.SetActive(true);
+        playerDeadParticle.Play();
     }
 }
