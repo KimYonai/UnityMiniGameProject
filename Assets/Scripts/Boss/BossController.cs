@@ -6,15 +6,16 @@ using static EnemyController;
 
 public class BossController : MonoBehaviour
 {
-    public enum BossState { Idle, Trace, Charge, Rush, Die, Size }
+    public enum BossState { Idle, Trace, Rush, Die, Size }
     [Header("Current State")]
     [SerializeField] BossState curState;
 
-    [Header("Enemy Settings")]
+    [Header("Boss Settings")]
     [SerializeField] GameObject player;
     [SerializeField] GameObject target;
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] PlayerController playerController;
+    [SerializeField] SpriteRenderer bossRender;
     [SerializeField] Vector2 startPos;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] bool isTrace;
@@ -36,7 +37,7 @@ public class BossController : MonoBehaviour
             curState = BossState.Idle;
         }
 
-        bossModel.RemainTime -= Time.deltaTime;
+        bossModel.RemainTime += Time.deltaTime;
 
         #region Boss State
         switch (curState)
@@ -47,10 +48,6 @@ public class BossController : MonoBehaviour
 
             case BossState.Trace:
                 Trace();
-                break;
-
-            case BossState.Charge:
-                Charge();
                 break;
 
             case BossState.Rush:
@@ -75,10 +72,6 @@ public class BossController : MonoBehaviour
         {
             curState = BossState.Trace;
         }
-        else if (isTrace == true && bossModel.RemainTime <= 0)
-        {
-            curState = BossState.Charge;
-        }
         else if (bossModel.CurHP == 0)
         {
             curState = BossState.Die;
@@ -87,30 +80,29 @@ public class BossController : MonoBehaviour
 
     private void Trace()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, bossModel.MoveSpeed * Time.deltaTime);
+        if (player.transform.position.x > transform.position.x)
+        {
+            bossRender.flipX = true;
+            rigid.velocity = Vector2.right * bossModel.MoveSpeed;
+        }
+        else if (player.transform.position.x < transform.position.x)
+        {
+            bossRender.flipX = false;
+            rigid.velocity = Vector2.left * bossModel.MoveSpeed;
+        }
+
+        if (Vector2.Distance(transform.position, player.transform.position) < 0.01f)
+        {
+            playerController.TakeHit();
+        }
 
         if (Physics2D.OverlapCircle(transform.position, bossModel.TraceRange, playerLayer) == false)
         {
             curState = BossState.Idle;
         }
-        else if (isTrace == true && bossModel.RemainTime <= 0)
+        else if (bossModel.RemainTime >= 5)
         {
-            curState = BossState.Charge;
-        }
-        else if (bossModel.CurHP <= 0)
-        {
-            curState = BossState.Die;
-        }
-    }
-
-    private void Charge()
-    {
-        bossModel.ChargeTime += Time.deltaTime;
-        float dir = player.GetComponent<Transform>().position.x < transform.position.x ? -1 : 1;
-        transform.localScale = new Vector2(dir * -1, 0);
-
-        if (bossModel.ChargeTime >= 1)
-        {
+            
             curState = BossState.Rush;
         }
         else if (bossModel.CurHP <= 0)
@@ -121,16 +113,40 @@ public class BossController : MonoBehaviour
 
     private void Rush()
     {
-       //rigid.velocity = new Vector2(player.transform.position.x, 0) * bossModel.RushSpeed;
-       //
-       //if (player.transform.position.x < 0)
-       //{
-       //    gameObject.render.flipX
-       //}
+        bossModel.RemainTime = 0;
+
+        if (player.transform.position.x > transform.position.x)
+        {
+            bossRender.flipX = true;
+            rigid.velocity = Vector2.right * bossModel.RushSpeed;
+        }
+        else if (player.transform.position.x < transform.position.x)
+        {
+            bossRender.flipX = false;
+            rigid.velocity = Vector2.left * bossModel.RushSpeed;
+        }
+
+        if (Vector2.Distance(transform.position, player.transform.position) < 0.01f)
+        {
+            playerController.TakeHit();
+        }
     }
 
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            playerController.TakeHit();
+            curState = BossState.Idle;
+        }
+        else if (collision != null)
+        {
+            curState = BossState.Idle;
+        }     
     }
 }

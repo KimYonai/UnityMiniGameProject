@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform muzzlePoint;
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer render;
+    public SpriteRenderer Render {  get { return render; } }
     [SerializeField] SpriteRenderer bulletRender;
     [SerializeField] float fireTime;
     [SerializeField] float remainTime;
