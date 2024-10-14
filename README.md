@@ -9,7 +9,7 @@
  - 보스 몬스터 토벌 시 게임 클리어
 ## 5. 주요 기능
 ### 5.1. 플레이어
-'''
+'''cs
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour 
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 - 'L' 키를 입력하여 수리검을 투척하여 적 공격
 - 적 오브젝트에게 피격 시 사망
 ### 5.2. 적 오브젝트 (일반)
-'''
+'''cs
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour 
@@ -74,7 +74,7 @@ public class EnemyController : MonoBehaviour
 - 플레이어 오브젝트와 충돌 시 플레이어 오브젝트 파괴로 플레이어 사망 구현
 - 플레이어에게 피격당해 체력에 해당하는 변수가 0이 되었을 때 사망
 ### 5.3. 적 오브젝트 (보스)
-'''
+'''cs
 using UnityEngine;
 
 public class BossController : MonoBehaviour 
