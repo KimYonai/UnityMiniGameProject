@@ -9,7 +9,7 @@
  - 보스 몬스터 토벌 시 게임 클리어
 ## 5. 주요 기능
 ### 5.1. 플레이어
-'''cs
+```cs
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour 
@@ -36,14 +36,14 @@ public class PlayerController : MonoBehaviour
   }
  }
 }
-'''
+```
 - 플레이어는 총 4가지의 상태(Idle, Run, Jump, Die)가 존재
 - 각 상태에 맞는 기능 및 애니메이션 출력 구현
 - 상태 진행에서 특정 조건 달성 시 상태 변화
 - 'L' 키를 입력하여 수리검을 투척하여 적 공격
 - 적 오브젝트에게 피격 시 사망
 ### 5.2. 적 오브젝트 (일반)
-'''cs
+```cs
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour 
@@ -67,14 +67,14 @@ public class EnemyController : MonoBehaviour
   }
  }
 }
-'''
+```
 - 적 오브젝트 (일반)는 총 3가지의 상태(Idle, Trace, Die)가 존재
 - 각 상태에 맞는 기능 및 애니메이션 출력 구현
 - 상태 진행에서 특정 조건 달성 시 상태 변화
 - 플레이어 오브젝트와 충돌 시 플레이어 오브젝트 파괴로 플레이어 사망 구현
 - 플레이어에게 피격당해 체력에 해당하는 변수가 0이 되었을 때 사망
 ### 5.3. 적 오브젝트 (보스)
-'''cs
+```cs
 using UnityEngine;
 
 public class BossController : MonoBehaviour 
@@ -101,7 +101,7 @@ public class BossController : MonoBehaviour
   }
  }
 }
-'''
+```
 - 적 오브젝트 (보스)는 총 4가지의 상태(Idle, Trace, Rush, Die)가 존재
 - 각 상태에 맞는 기능 구현 (애니메이션 추가 진행 중)
 - 상태 진행에서 특정 조건 달성 시 상태 변화
